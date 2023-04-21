@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:crybse/features/crypto/presentation/widgets/title_price.dart';
+import 'package:crybse/features/market/presentation/widgets/title_price.dart';
 import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/routers/app_route.gr.dart';
 import 'package:crybse/shared/domain/models/model.dart';

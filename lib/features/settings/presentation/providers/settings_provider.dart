@@ -1,3 +1,4 @@
+import 'package:crybse/features/market/domain/provider/market_provider.dart';
 import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/shared/constants/exceptions.dart';
 import 'package:crybse/shared/constants/utils.dart' as utils;
@@ -5,7 +6,7 @@ import 'package:crybse/shared/domain/models/model.dart';
 import 'package:crybse/shared/providers/providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final cryptoSettingsProvider = StateNotifierProvider<SettingsNotifier, SettingsState>(SettingsNotifier.new);
+final settingsProvider = StateNotifierProvider<SettingsNotifier, SettingsState>(SettingsNotifier.new);
 
 class SettingsNotifier extends StateNotifier<SettingsState> {
   SettingsNotifier(this.ref) : super(const SettingsState.initial()) {
@@ -24,7 +25,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     state = SettingsState.data(details: details);
   }
 
-  Future<void> setLenguage(String language) async {
+  Future<void> setLanguage(String language) async {
     state = const SettingsState.loading();
     await ref.read(storageProvider).write(key: 'language', value: language);
     details = details.copyWith(currentLanguage: language);
@@ -41,10 +42,10 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
 
   Future<void> verifyFavoritePair() async {
     try {
-      await ref.read(cryptoRepository).getPairSummary(details.favoriteExchange, details.favoritePair);
+      await ref.read(marketRepositoryProvider).getPairSummary(details.favoriteExchange, details.favoritePair);
     } on DataException catch (error) {
       if (error.message == LocaleKeys.errorRequestNotFound) {
-        final pairs = await ref.read(cryptoRepository).getPairs(details.favoriteExchange);
+        final pairs = await ref.read(marketRepositoryProvider).getPairs(details.favoriteExchange);
         await setFavoritePair(pairs.first.pair);
       }
     }

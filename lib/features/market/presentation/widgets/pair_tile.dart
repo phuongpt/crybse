@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:crybse/features/crypto/domain/providers/crypto_provider.dart';
-import 'package:crybse/features/crypto/presentation/widgets/line_chart.dart';
+import 'package:crybse/features/market/presentation/providers/market_provider.dart';
+import 'package:crybse/features/market/presentation/widgets/line_chart.dart';
 import 'package:crybse/shared/constants/keys.dart';
 import 'package:crybse/shared/constants/utils.dart' as utils;
 import 'package:crybse/shared/domain/models/model.dart';
@@ -8,8 +8,6 @@ import 'package:crybse/shared/helper/price_helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-// import 'line_chart.dart';
 
 final currentPair = Provider<Pair>((ref) => const Pair(exchange: '', pair: ''));
 

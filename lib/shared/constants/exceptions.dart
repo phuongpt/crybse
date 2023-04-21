@@ -1,3 +1,4 @@
+import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:dio/dio.dart';
 
 class DataException implements Exception {
@@ -6,30 +7,34 @@ class DataException implements Exception {
   DataException.fromDioError(DioError dioError) {
     switch (dioError.type) {
       case DioErrorType.cancel:
-        message = 'LocaleKeys.errorRequestCancelled';
+        message = LocaleKeys.errorRequestCancelled;
         break;
       case DioErrorType.connectionTimeout:
-        message = 'LocaleKeys.errorConnectionTimeout';
+        message = LocaleKeys.errorConnectionTimeout;
         break;
       case DioErrorType.receiveTimeout:
-        message = 'LocaleKeys.errorReceiveTimeout';
+        message = LocaleKeys.errorReceiveTimeout;
         break;
       case DioErrorType.connectionError:
         message = _handleError(dioError.response!.statusCode!);
         break;
       case DioErrorType.sendTimeout:
-        message = 'LocaleKeys.errorSendTimeout';
+        message = LocaleKeys.errorSendTimeout;
         break;
       case DioErrorType.badCertificate:
-        message = 'LocaleKeys.errorInternetConnection';
+        message = LocaleKeys.errorInternetConnection;
         break;
       case DioErrorType.badResponse:
-        message = 'LocaleKeys.errorInternetConnection';
+        message = LocaleKeys.errorInternetConnection;
         break;
       case DioErrorType.unknown:
-        message = 'LocaleKeys.errorInternetConnection';
+        message = LocaleKeys.errorInternetConnection;
         break;
     }
+  }
+
+  DataException.fromApplicationError(Object exception) {
+    message = LocaleKeys.errorSomethingWentWrong;
   }
 
   String message = '';
@@ -37,13 +42,13 @@ class DataException implements Exception {
   String _handleError(int statusCode) {
     switch (statusCode) {
       case 400:
-        return 'LocaleKeys.errorBadRequest';
+        return LocaleKeys.errorBadRequest;
       case 404:
-        return 'LocaleKeys.errorRequestNotFound';
+        return LocaleKeys.errorRequestNotFound;
       case 500:
-        return 'LocaleKeys.errorIntenalServer';
+        return LocaleKeys.errorIntenalServer;
       default:
-        return 'LocaleKeys.errorSomethingWentWrong';
+        return LocaleKeys.errorSomethingWentWrong;
     }
   }
 

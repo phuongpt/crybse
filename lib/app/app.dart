@@ -1,4 +1,4 @@
-import 'package:crybse/features/settings/providers/settings_provider.dart';
+import 'package:crybse/features/settings/presentation/providers/settings_provider.dart';
 import 'package:crybse/routers/app_route.dart';
 import 'package:crybse/shared/constants/app_theme.dart';
 import 'package:crybse/shared/constants/utils.dart' as utils;
@@ -13,7 +13,7 @@ class App extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(cryptoSettingsProvider);
+    final settings = ref.watch(settingsProvider);
 
     final themeMode = settings.maybeWhen(data: (data) => utils.getThemeMode(data.themeMode), orElse: () => ThemeMode.system);
     return MaterialApp.router(

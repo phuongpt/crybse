@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:crybse/features/crypto/presentation/pages/market_page.dart';
+import 'package:crybse/features/market/presentation/pages/market_page.dart';
 import 'package:crybse/features/search/pages/search_page.dart';
 import 'package:crybse/features/settings/presentation/pages/settings_page.dart';
 import 'package:crybse/generated/locale_keys.g.dart';
@@ -58,9 +58,9 @@ class HomePage extends HookConsumerWidget {
       case 0:
         return const MarketPage();
       case 1:
-        return const SearchPage();
+        return Container();
       case 2:
-        return const SettingsPage();
+        return Container();
       default:
         return Container();
     }
