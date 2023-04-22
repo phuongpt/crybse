@@ -1,4 +1,5 @@
 import 'package:crybse/features/market/domain/provider/market_provider.dart';
+import 'package:crybse/features/market/presentation/providers/market_provider.dart';
 import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/shared/constants/exceptions.dart';
 import 'package:crybse/shared/constants/utils.dart' as utils;
@@ -45,8 +46,10 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
       await ref.read(marketRepositoryProvider).getPairSummary(details.favoriteExchange, details.favoritePair);
     } on DataException catch (error) {
       if (error.message == LocaleKeys.errorRequestNotFound) {
-        final pairs = await ref.read(marketRepositoryProvider).getPairs(details.favoriteExchange);
-        await setFavoritePair(pairs.first.pair);
+        await ref.read(marketNotifierProvider).maybeWhen(
+              data: (data) => setFavoritePair(data.first.pair),
+              orElse: () {},
+            );
       }
     }
   }

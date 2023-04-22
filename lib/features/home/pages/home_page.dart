@@ -58,9 +58,9 @@ class HomePage extends HookConsumerWidget {
       case 0:
         return const MarketPage();
       case 1:
-        return Container();
+        return const SearchPage();
       case 2:
-        return Container();
+        return const SettingsPage();
       default:
         return Container();
     }

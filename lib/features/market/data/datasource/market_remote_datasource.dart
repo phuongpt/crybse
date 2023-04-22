@@ -93,7 +93,10 @@ class MarketRemoteDatasource implements MarketRemoteDatasourceInterface {
   Future<List<Exchange>> getExchanges({CancelToken? cancelToken}) async {
     try {
       final response = await _client.get('/exchanges', cancelToken: cancelToken);
-      return ExchangesResponse.fromJson(response.data as Map<String, dynamic>).result;
+      return ExchangesResponse.fromJson(response.data as Map<String, dynamic>).result.toList()
+        ..sort(
+          (a, b) => a.name.compareTo(b.name),
+        );
     } on DioError catch (error) {
       throw DataException.fromDioError(error);
     }

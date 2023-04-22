@@ -1,37 +1,12 @@
 import 'package:crybse/shared/domain/models/market/market.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum MarketStateStatus { initial, loading, success, failure }
+part 'market_state.freezed.dart';
 
-class MarketState extends Equatable {
-  const MarketState({
-    this.data = const [],
-    this.status = MarketStateStatus.initial,
-    this.message = '',
-  });
-
-  final MarketStateStatus status;
-  final List<Pair> data;
-  final String message;
-
-  MarketState copyWith({
-    List<Pair>? data,
-    MarketStateStatus? status,
-    String? message,
-  }) {
-    print('copyWith ${status ?? this.status}');
-    return MarketState(
-      data: data ?? this.data,
-      status: status ?? this.status,
-      message: message ?? this.message,
-    );
-  }
-
-  @override
-  String toString() {
-    return 'MarketState(status:$status, message:$message)';
-  }
-
-  @override
-  List<Object?> get props => [status];
+@freezed
+abstract class MarketState with _$MarketState {
+  const factory MarketState.initial() = _MarketStateInitial;
+  const factory MarketState.loading() = _MarketStateLoading;
+  const factory MarketState.data({required List<Pair> data}) = _MarketStateData;
+  const factory MarketState.error({String? error}) = _MarketStateError;
 }

@@ -4,18 +4,18 @@ import 'package:crybse/shared/constants/exceptions.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MarketNotifier extends StateNotifier<MarketState> {
-  MarketNotifier({required this.usecase}) : super(const MarketState());
+  MarketNotifier({required this.usecase}) : super(const MarketState.initial());
 
   final MarketUsecase usecase;
 
-  Future<void> getPairs() async {
+  Future<void> getPairs(String market) async {
     try {
-      final results = await usecase.getPairs('binance');
-      state = state.copyWith(data: results, status: MarketStateStatus.success);
+      final results = await usecase.getPairs(market);
+      state = MarketState.data(data: results);
     } on DataException catch (_) {
-      state = state.copyWith(status: MarketStateStatus.failure, message: _.message);
+      state = MarketState.error(error: _.message);
     } catch (_) {
-      state = state.copyWith(status: MarketStateStatus.failure, message: DataException.fromApplicationError(_).message);
+      state = MarketState.error(error: DataException.fromApplicationError(_).message);
     }
   }
 }

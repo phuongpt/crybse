@@ -16,7 +16,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final marketNotifierProvider = StateNotifierProvider<MarketNotifier, MarketState>((ref) {
   final repository = ref.watch(marketRepositoryProvider);
-  return MarketNotifier(usecase: MarketUsecase(repository: repository))..getPairs();
+
+  final settings = ref.watch(settingsProvider);
+  final exchangeName =
+      settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => throw DataException(message: LocaleKeys.errorSomethingWentWrong));
+
+  return MarketNotifier(usecase: MarketUsecase(repository: repository))..getPairs(exchangeName);
 });
 
 final pairSummaryProvider = FutureProvider.family<PairSummary, Pair>((ref, pair) async {
@@ -39,55 +44,39 @@ final graphDataProvider = FutureProvider.family<Graph, Pair>((ref, pair) async {
   return graph;
 });
 
-// final pairsProvider = FutureProvider<List<Pair>>((ref) async {
-//   final settings = ref.watch(settingsProvider);
-//   final exchangeName =
-//       settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => throw DataException(message: LocaleKeys.errorSomethingWentWrong));
-//   final pairs = await ref.read(marketRepositoryProvider).getPairs(exchangeName);
-//   return pairs;
-// });
+final favoritePairProvider = FutureProvider<FavoritePair>((ref) async {
+  final cancelToken = CancelToken();
+  ref.onDispose(cancelToken.cancel);
 
-// final exchangesProvider = FutureProvider<List<Exchange>>((ref) async {
-//   final cancelToken = CancelToken();
-//   ref.onDispose(cancelToken.cancel);
+  final settings = ref.watch(settingsProvider);
+  final exchangeName = settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => '');
+  final pair = settings.maybeWhen(data: (details) => details.favoritePair, orElse: () => '');
 
-//   final exchanges = await ref.read(marketRepositoryProvider).getExchanges(cancelToken: cancelToken);
-//   return exchanges;
-// });
+  if (exchangeName.isEmpty || pair.isEmpty) {
+    throw DataException(message: LocaleKeys.errorSomethingWentWrong);
+  }
 
-// final favoritePairProvider = FutureProvider<FavoritePair>((ref) async {
-//   final cancelToken = CancelToken();
-//   ref.onDispose(cancelToken.cancel);
+  try {
+    final pairSummary = await ref.read(marketRepositoryProvider).getPairSummary(exchangeName, pair, cancelToken: cancelToken);
+    return FavoritePair(
+      pair: Pair(pair: pair, exchange: exchangeName, pairName: Helper.convertPairName(pair)),
+      pairSummary: pairSummary,
+    );
+  } on DataException catch (error) {
+    if (error.message == LocaleKeys.errorRequestNotFound) {
+      await ref.read(settingsProvider.notifier).verifyFavoritePair();
+    }
+    return Future.value();
+  }
+});
 
-//   final settings = ref.watch(settingsProvider);
-//   final exchangeName = settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => '');
-//   final pair = settings.maybeWhen(data: (details) => details.favoritePair, orElse: () => '');
+final exchangesProvider = FutureProvider<List<Exchange>>((ref) async {
+  final cancelToken = CancelToken();
+  ref.onDispose(cancelToken.cancel);
 
-//   if (exchangeName.isEmpty || pair.isEmpty) {
-//     throw DataException(message: LocaleKeys.errorSomethingWentWrong);
-//   }
-
-//   try {
-//     final pairSummary = await ref.read(cryptoRepository).getPairSummary(exchangeName, pair, cancelToken: cancelToken);
-//     return FavoritePair(
-//       pair: Pair(pair: pair, exchange: exchangeName, pairName: Helper.convertPairName(pair)),
-//       pairSummary: pairSummary,
-//     );
-//   } on DataException catch (error) {
-//     if (error.message == LocaleKeys.errorRequestNotFound) {
-//       await ref.read(settingsProvider.notifier).verifyFavoritePair();
-//     }
-//     rethrow;
-//   }
-// });
-
-// final pairSummaryProvider = FutureProvider.family<PairSummary, Pair>((ref, pair) async {
-//   final cancelToken = CancelToken();
-//   ref.onDispose(cancelToken.cancel);
-
-//   final pairSummary = await ref.read(cryptoRepository).getPairSummary(pair.exchange, pair.pair, cancelToken: cancelToken);
-//   return pairSummary;
-// });
+  final exchanges = await ref.read(marketRepositoryProvider).getExchanges(cancelToken: cancelToken);
+  return exchanges;
+});
 
 // final pairOrderBookProvider = FutureProvider.family<OrderBook, Pair>((ref, pair) async {
 //   final cancelToken = CancelToken();

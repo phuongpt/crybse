@@ -5,13 +5,7 @@ part 'exchange.g.dart';
 
 @freezed
 abstract class Exchange with _$Exchange {
-  const factory Exchange(
-      {required int id,
-      required String symbol,
-      required String name,
-      required String route,
-      required bool active}) = _Exchange;
+  const factory Exchange({required int id, required String symbol, required String name, required String route, required bool active}) = _Exchange;
 
-  factory Exchange.fromJson(Map<String, dynamic> json) =>
-      _$ExchangeFromJson(json);
+  factory Exchange.fromJson(Map<String, dynamic> json) => _$ExchangeFromJson(json);
 }
