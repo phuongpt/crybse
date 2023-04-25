@@ -7,7 +7,6 @@ import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/shared/constants/exceptions.dart';
 import 'package:crybse/shared/domain/helpers/helper.dart';
 import 'package:crybse/shared/domain/models/model.dart';
-import 'package:crybse/shared/providers/providers.dart';
 import 'package:crybse/shared/providers/time_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -66,7 +65,12 @@ final favoritePairProvider = FutureProvider<FavoritePair>((ref) async {
     if (error.message == LocaleKeys.errorRequestNotFound) {
       await ref.read(settingsProvider.notifier).verifyFavoritePair();
     }
-    return Future.value();
+    return Future.value(
+      const FavoritePair(
+        pair: Pair(exchange: '', pair: ''),
+        pairSummary: PairSummary(price: Price(last: 0, high: 0, low: 0, change: Change(percentage: 0, absolute: 0)), volume: 0, volumeQuote: 0),
+      ),
+    );
   }
 });
 
@@ -77,32 +81,3 @@ final exchangesProvider = FutureProvider<List<Exchange>>((ref) async {
   final exchanges = await ref.read(marketRepositoryProvider).getExchanges(cancelToken: cancelToken);
   return exchanges;
 });
-
-// final pairOrderBookProvider = FutureProvider.family<OrderBook, Pair>((ref, pair) async {
-//   final cancelToken = CancelToken();
-//   ref.onDispose(cancelToken.cancel);
-
-//   final orderBook = await ref.read(cryptoRepository).getOrderBook(pair.exchange, pair.pair, cancelToken: cancelToken);
-
-//   return orderBook;
-// });
-
-// final tradesProvider = FutureProvider.family<List<Trade>, Pair>((ref, pair) async {
-//   final cancelToken = CancelToken();
-//   ref.onDispose(cancelToken.cancel);
-
-//   final trades = await ref.read(cryptoRepository).getTrades(pair.exchange, pair.pair, cancelToken: cancelToken);
-//   return trades;
-// });
-
-// final graphDataProvider = FutureProvider.family<Graph, Pair>((ref, pair) async {
-//   final interval = ref.watch(timeDataProvider).periods;
-//   final fromHours = ref.watch(timeDataProvider).before;
-//   var before = '';
-//   if (fromHours.isNotEmpty) {
-//     before = (DateTime.now().subtract(Duration(hours: int.parse(fromHours))).toUtc().millisecondsSinceEpoch ~/ 1000).toString();
-//   }
-
-//   final graph = await ref.read(cryptoRepository).getPairGraph(pair.exchange, pair.pair, periods: interval, before: before);
-//   return graph;
-// });

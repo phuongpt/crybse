@@ -1,3 +1,5 @@
+// ignore_for_file: use_setters_to_change_properties
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TimeGraphData {
@@ -16,4 +18,12 @@ final timeList = [
   TimeGraphData('ALL', '', '')
 ];
 
-final timeDataProvider = StateProvider<TimeGraphData>((ref) => TimeGraphData('1M', '60', '12'));
+class TimeGraphDataNotifier extends StateNotifier<TimeGraphData> {
+  TimeGraphDataNotifier() : super(TimeGraphData('1M', '60', '12'));
+
+  void updateTimeGraphData(TimeGraphData newData) {
+    state = newData;
+  }
+}
+
+final timeDataProvider = StateNotifierProvider<TimeGraphDataNotifier, TimeGraphData>((ref) => TimeGraphDataNotifier());

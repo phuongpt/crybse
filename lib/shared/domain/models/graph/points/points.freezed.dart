@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Points {
-  double get closeTime => throw _privateConstructorUsedError;
-  double get openTime => throw _privateConstructorUsedError;
+  DateTime get closeTime => throw _privateConstructorUsedError;
+  double get openPrice => throw _privateConstructorUsedError;
   double get highPrice => throw _privateConstructorUsedError;
   double get lowPrice => throw _privateConstructorUsedError;
   double get closePrice => throw _privateConstructorUsedError;
@@ -34,8 +34,8 @@ abstract class $PointsCopyWith<$Res> {
       _$PointsCopyWithImpl<$Res, Points>;
   @useResult
   $Res call(
-      {double closeTime,
-      double openTime,
+      {DateTime closeTime,
+      double openPrice,
       double highPrice,
       double lowPrice,
       double closePrice,
@@ -57,7 +57,7 @@ class _$PointsCopyWithImpl<$Res, $Val extends Points>
   @override
   $Res call({
     Object? closeTime = null,
-    Object? openTime = null,
+    Object? openPrice = null,
     Object? highPrice = null,
     Object? lowPrice = null,
     Object? closePrice = null,
@@ -68,10 +68,10 @@ class _$PointsCopyWithImpl<$Res, $Val extends Points>
       closeTime: null == closeTime
           ? _value.closeTime
           : closeTime // ignore: cast_nullable_to_non_nullable
-              as double,
-      openTime: null == openTime
-          ? _value.openTime
-          : openTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      openPrice: null == openPrice
+          ? _value.openPrice
+          : openPrice // ignore: cast_nullable_to_non_nullable
               as double,
       highPrice: null == highPrice
           ? _value.highPrice
@@ -104,8 +104,8 @@ abstract class _$$_PointsCopyWith<$Res> implements $PointsCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {double closeTime,
-      double openTime,
+      {DateTime closeTime,
+      double openPrice,
       double highPrice,
       double lowPrice,
       double closePrice,
@@ -124,7 +124,7 @@ class __$$_PointsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? closeTime = null,
-    Object? openTime = null,
+    Object? openPrice = null,
     Object? highPrice = null,
     Object? lowPrice = null,
     Object? closePrice = null,
@@ -135,10 +135,10 @@ class __$$_PointsCopyWithImpl<$Res>
       closeTime: null == closeTime
           ? _value.closeTime
           : closeTime // ignore: cast_nullable_to_non_nullable
-              as double,
-      openTime: null == openTime
-          ? _value.openTime
-          : openTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      openPrice: null == openPrice
+          ? _value.openPrice
+          : openPrice // ignore: cast_nullable_to_non_nullable
               as double,
       highPrice: null == highPrice
           ? _value.highPrice
@@ -169,7 +169,7 @@ class __$$_PointsCopyWithImpl<$Res>
 class _$_Points implements _Points {
   const _$_Points(
       {required this.closeTime,
-      required this.openTime,
+      required this.openPrice,
       required this.highPrice,
       required this.lowPrice,
       required this.closePrice,
@@ -177,9 +177,9 @@ class _$_Points implements _Points {
       required this.quoteVolume});
 
   @override
-  final double closeTime;
+  final DateTime closeTime;
   @override
-  final double openTime;
+  final double openPrice;
   @override
   final double highPrice;
   @override
@@ -193,7 +193,7 @@ class _$_Points implements _Points {
 
   @override
   String toString() {
-    return 'Points(closeTime: $closeTime, openTime: $openTime, highPrice: $highPrice, lowPrice: $lowPrice, closePrice: $closePrice, volume: $volume, quoteVolume: $quoteVolume)';
+    return 'Points(closeTime: $closeTime, openPrice: $openPrice, highPrice: $highPrice, lowPrice: $lowPrice, closePrice: $closePrice, volume: $volume, quoteVolume: $quoteVolume)';
   }
 
   @override
@@ -203,8 +203,8 @@ class _$_Points implements _Points {
             other is _$_Points &&
             (identical(other.closeTime, closeTime) ||
                 other.closeTime == closeTime) &&
-            (identical(other.openTime, openTime) ||
-                other.openTime == openTime) &&
+            (identical(other.openPrice, openPrice) ||
+                other.openPrice == openPrice) &&
             (identical(other.highPrice, highPrice) ||
                 other.highPrice == highPrice) &&
             (identical(other.lowPrice, lowPrice) ||
@@ -217,7 +217,7 @@ class _$_Points implements _Points {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, closeTime, openTime, highPrice,
+  int get hashCode => Object.hash(runtimeType, closeTime, openPrice, highPrice,
       lowPrice, closePrice, volume, quoteVolume);
 
   @JsonKey(ignore: true)
@@ -229,8 +229,8 @@ class _$_Points implements _Points {
 
 abstract class _Points implements Points {
   const factory _Points(
-      {required final double closeTime,
-      required final double openTime,
+      {required final DateTime closeTime,
+      required final double openPrice,
       required final double highPrice,
       required final double lowPrice,
       required final double closePrice,
@@ -238,9 +238,9 @@ abstract class _Points implements Points {
       required final double quoteVolume}) = _$_Points;
 
   @override
-  double get closeTime;
+  DateTime get closeTime;
   @override
-  double get openTime;
+  double get openPrice;
   @override
   double get highPrice;
   @override

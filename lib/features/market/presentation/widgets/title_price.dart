@@ -26,7 +26,7 @@ class TitlePrice extends HookConsumerWidget {
                   child: AutoSizeText(
                     pair.pairName!,
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.displaySmall,
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
                 Expanded(
@@ -34,22 +34,25 @@ class TitlePrice extends HookConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      AutoSizeText(PriceHelper.formatPrice(data.price.change.absolute, 5),
-                          textAlign: TextAlign.start,
-                          minFontSize: 0,
-                          stepGranularity: 0.1,
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: data.price.change.absolute >= 0 ? Colors.green : Colors.red,
-                              fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
-                              fontWeight: FontWeight.w800)),
+                      AutoSizeText(
+                        PriceHelper.formatPrice(data.price.change.absolute, 5),
+                        textAlign: TextAlign.start,
+                        minFontSize: 0,
+                        stepGranularity: 0.1,
+                        maxLines: 1,
+                        style: TextStyle(
+                          color: data.price.change.absolute >= 0 ? Colors.green : Colors.red,
+                          fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
                       AutoSizeText(
                         ' (${PriceHelper.formatPrice(data.price.change.percentage, 2)}%)',
                         textAlign: TextAlign.start,
                         minFontSize: 0,
                         stepGranularity: 0.1,
                         maxLines: 1,
-                        style: Theme.of(context).textTheme.headlineMedium,
+                        style: Theme.of(context).textTheme.headlineMedium!.apply(color: data.price.change.absolute >= 0 ? Colors.green : Colors.red),
                       )
                     ],
                   ),
@@ -60,7 +63,7 @@ class TitlePrice extends HookConsumerWidget {
             AutoSizeText(
               PriceHelper.formatPrice(data.price.last, 5),
               maxLines: 1,
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
           ],
         );

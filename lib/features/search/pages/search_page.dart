@@ -45,6 +45,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         children: [
           AppBar(
             toolbarHeight: 65,
+            backgroundColor: Colors.black,
             title: Container(
               height: 50,
               padding: const EdgeInsets.only(left: 15),
@@ -103,7 +104,12 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                               child: const PairTile(),
                             ),
                           ),
-                          if (data.isEmpty) Center(child: Text(LocaleKeys.noResults.tr()))
+                          if (data.isEmpty)
+                            Center(
+                                child: Text(
+                              LocaleKeys.noResults.tr(),
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ))
                         ],
                       );
                     },

@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crybse/features/market/presentation/providers/market_provider.dart';
 import 'package:crybse/features/market/presentation/widgets/line_chart.dart';
+import 'package:crybse/routers/app_route.gr.dart';
 import 'package:crybse/shared/constants/keys.dart';
 import 'package:crybse/shared/constants/utils.dart' as utils;
 import 'package:crybse/shared/domain/models/model.dart';
@@ -24,12 +26,9 @@ class PairTile extends HookConsumerWidget {
       key: Keys.PAIR_TILE,
       child: GestureDetector(
         onTap: () {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (context) => DetailsScreen(
-          //               pair: pair,
-          //             )));
+          AutoRouter.of(context).push(
+            MarketDetailPageRoute(pair: pair),
+          );
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -63,8 +62,14 @@ class PairTile extends HookConsumerWidget {
                                   maxLines: 1,
                                   style: Theme.of(context).textTheme.titleLarge!.apply(color: summary.price.change.absolute >= 0 ? Colors.green : Colors.red),
                                 ),
-                                AutoSizeText(' (${PriceHelper.formatPrice(summary.price.change.percentage, 2)}%)',
-                                    textAlign: TextAlign.end, minFontSize: 0, stepGranularity: 0.1, maxLines: 1, style: Theme.of(context).textTheme.titleLarge),
+                                AutoSizeText(
+                                  ' (${PriceHelper.formatPrice(summary.price.change.percentage, 2)}%)',
+                                  textAlign: TextAlign.end,
+                                  minFontSize: 0,
+                                  stepGranularity: 0.1,
+                                  maxLines: 1,
+                                  style: Theme.of(context).textTheme.titleLarge!.apply(color: summary.price.change.absolute >= 0 ? Colors.green : Colors.red),
+                                ),
                               ],
                             ),
                           ),
@@ -89,7 +94,7 @@ class PairTile extends HookConsumerWidget {
                             height: 50,
                             child: graph.when(
                                 data: (data) => LineChartWidget(
-                                      color: summary.price.change.absolute < 0 ? Colors.red : const Color(0xff02d39a),
+                                      color: Theme.of(context).focusColor,
                                       data: utils.getPoints(data),
                                     ),
                                 loading: () => const LineChartWidget(loading: true),

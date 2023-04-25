@@ -35,7 +35,6 @@ class SettingsPage extends HookConsumerWidget {
                   centerTitle: true,
                   title: Text(
                     LocaleKeys.settingsTitle.tr(),
-                    style: const TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
                 Expanded(

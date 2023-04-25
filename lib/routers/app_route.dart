@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:crybse/features/home/pages/home_page.dart';
 import 'package:crybse/features/market/presentation/pages/market_page.dart';
+import 'package:crybse/features/market_detail/presentation/pages/maket_detail_page.dart';
 import 'package:crybse/features/search/pages/search_page.dart';
 import 'package:crybse/features/settings/presentation/pages/settings_page.dart';
 import 'package:crybse/routers/app_route.gr.dart';
@@ -16,5 +17,6 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: MarketPageRoute.page, path: MarketPage.routeName),
         AutoRoute(page: SearchPageRoute.page, path: SearchPage.routeName),
         AutoRoute(page: SettingsPageRoute.page, path: SettingsPage.routeName),
+        AutoRoute(page: MarketDetailPageRoute.page, path: MarketDetailPage.routeName),
       ];
 }

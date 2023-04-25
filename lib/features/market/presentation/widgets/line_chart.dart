@@ -79,11 +79,7 @@ class LineChartWidget extends StatelessWidget {
             show: false,
           ),
           belowBarData: BarAreaData(
-            show: true,
-            // gradient:Gradient(stops: )
-            // gradientFrom: Offset(0, .9),
-            // gradientTo: Offset(0, 0.5),
-            // colors: [color.withOpacity(.01), color.withOpacity(.3)],
+            show: false,
           ),
         ),
       ],

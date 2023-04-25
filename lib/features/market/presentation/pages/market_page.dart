@@ -5,7 +5,6 @@ import 'package:crybse/features/market/presentation/providers/market_provider.da
 import 'package:crybse/features/market/presentation/providers/market_state.dart';
 import 'package:crybse/features/market/presentation/widgets/favorite_pair.dart';
 import 'package:crybse/features/market/presentation/widgets/pair_tile.dart';
-import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/shared/constants/keys.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -31,23 +30,9 @@ class _MarketPageState extends ConsumerState<MarketPage> {
         children: [
           AppBar(
             toolbarHeight: 65,
-            centerTitle: false,
-            title: Text(
-              LocaleKeys.homeTitle.tr(),
-              style: const TextStyle(color: Colors.white, fontSize: 25),
+            title: const Text(
+              'CRYBSE',
             ),
-            actions: [
-              Container(
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(50)),
-                width: 45,
-                child: const Icon(
-                  Icons.person_outline,
-                  size: 30,
-                  color: Colors.black,
-                ),
-              ),
-            ],
           ),
           Expanded(
             child: Column(
