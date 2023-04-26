@@ -1,4 +1,5 @@
 import 'package:crybse/features/market/domain/provider/market_provider.dart';
+import 'package:crybse/features/market/domain/usecases/market_usecase.dart';
 import 'package:crybse/features/market/presentation/providers/market_provider.dart';
 import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/shared/constants/exceptions.dart';
@@ -43,7 +44,8 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
 
   Future<void> verifyFavoritePair() async {
     try {
-      await ref.read(marketRepositoryProvider).getPairSummary(details.favoriteExchange, details.favoritePair);
+      final usecase = MarketUsecase(repository: ref.read(marketRepositoryProvider));
+      await usecase.getPairSummary(details.favoriteExchange, details.favoritePair);
     } on DataException catch (error) {
       if (error.message == LocaleKeys.errorRequestNotFound) {
         await ref.read(marketNotifierProvider).maybeWhen(

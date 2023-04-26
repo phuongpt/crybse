@@ -1,8 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:auto_route/auto_route.dart';
+import 'package:crybse/features/market/presentation/providers/favorite_pair_provider.dart';
 import 'package:crybse/features/market/presentation/providers/market_provider.dart';
-import 'package:crybse/features/market/presentation/providers/market_state.dart';
 import 'package:crybse/features/market/presentation/widgets/favorite_pair.dart';
 import 'package:crybse/features/market/presentation/widgets/pair_tile.dart';
 import 'package:crybse/shared/constants/keys.dart';

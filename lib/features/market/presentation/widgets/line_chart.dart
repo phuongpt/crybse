@@ -73,7 +73,7 @@ class LineChartWidget extends StatelessWidget {
         LineChartBarData(
           spots: listData(data),
           color: color,
-          barWidth: 2,
+          barWidth: 1,
           isStrokeCapRound: true,
           dotData: FlDotData(
             show: false,

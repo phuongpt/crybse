@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:crybse/features/market/presentation/providers/market_provider.dart';
-import 'package:crybse/features/market/presentation/providers/market_state.dart';
+import 'package:crybse/features/market/presentation/providers/state/market_state.dart';
+import 'package:crybse/features/settings/presentation/providers/exchange_provider.dart';
 import 'package:crybse/features/settings/presentation/providers/settings_provider.dart';
 import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/shared/constants/keys.dart';

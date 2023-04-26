@@ -1,33 +1,30 @@
 import 'package:crybse/features/market/domain/provider/market_provider.dart';
 import 'package:crybse/features/market/domain/usecases/market_usecase.dart';
-import 'package:crybse/features/market/presentation/providers/market_notifier.dart';
-import 'package:crybse/features/market/presentation/providers/market_state.dart';
+import 'package:crybse/features/market/presentation/providers/state/market_notifier.dart';
+import 'package:crybse/features/market/presentation/providers/state/market_state.dart';
 import 'package:crybse/features/settings/presentation/providers/settings_provider.dart';
 import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/shared/constants/exceptions.dart';
-import 'package:crybse/shared/domain/helpers/helper.dart';
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:crybse/shared/providers/time_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// final marketRepositoryProvider = Provider<MarketRepository>((ref) => MarketRepository());
-
 final marketNotifierProvider = StateNotifierProvider<MarketNotifier, MarketState>((ref) {
-  final repository = ref.watch(marketRepositoryProvider);
-
   final settings = ref.watch(settingsProvider);
   final exchangeName =
       settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => throw DataException(message: LocaleKeys.errorSomethingWentWrong));
 
-  return MarketNotifier(usecase: MarketUsecase(repository: repository))..getPairs(exchangeName);
+  return MarketNotifier(usecase: MarketUsecase(repository: ref.read(marketRepositoryProvider)))..getPairs(exchangeName);
 });
 
 final pairSummaryProvider = FutureProvider.family<PairSummary, Pair>((ref, pair) async {
   final cancelToken = CancelToken();
   ref.onDispose(cancelToken.cancel);
 
-  final pairSummary = await ref.read(marketRepositoryProvider).getPairSummary(pair.exchange, pair.pair, cancelToken: cancelToken);
+  final usecase = MarketUsecase(repository: ref.read(marketRepositoryProvider));
+
+  final pairSummary = await usecase.getPairSummary(pair.exchange, pair.pair, cancelToken: cancelToken);
   return pairSummary;
 });
 
@@ -39,45 +36,8 @@ final graphDataProvider = FutureProvider.family<Graph, Pair>((ref, pair) async {
     before = (DateTime.now().subtract(Duration(hours: int.parse(fromHours))).toUtc().millisecondsSinceEpoch ~/ 1000).toString();
   }
 
-  final graph = await ref.read(marketRepositoryProvider).getPairGraph(pair.exchange, pair.pair, periods: interval, before: before);
+  final usecase = MarketUsecase(repository: ref.read(marketRepositoryProvider));
+
+  final graph = await usecase.getPairGraph(pair.exchange, pair.pair, periods: interval, before: before);
   return graph;
-});
-
-final favoritePairProvider = FutureProvider<FavoritePair>((ref) async {
-  final cancelToken = CancelToken();
-  ref.onDispose(cancelToken.cancel);
-
-  final settings = ref.watch(settingsProvider);
-  final exchangeName = settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => '');
-  final pair = settings.maybeWhen(data: (details) => details.favoritePair, orElse: () => '');
-
-  if (exchangeName.isEmpty || pair.isEmpty) {
-    throw DataException(message: LocaleKeys.errorSomethingWentWrong);
-  }
-
-  try {
-    final pairSummary = await ref.read(marketRepositoryProvider).getPairSummary(exchangeName, pair, cancelToken: cancelToken);
-    return FavoritePair(
-      pair: Pair(pair: pair, exchange: exchangeName, pairName: Helper.convertPairName(pair)),
-      pairSummary: pairSummary,
-    );
-  } on DataException catch (error) {
-    if (error.message == LocaleKeys.errorRequestNotFound) {
-      await ref.read(settingsProvider.notifier).verifyFavoritePair();
-    }
-    return Future.value(
-      const FavoritePair(
-        pair: Pair(exchange: '', pair: ''),
-        pairSummary: PairSummary(price: Price(last: 0, high: 0, low: 0, change: Change(percentage: 0, absolute: 0)), volume: 0, volumeQuote: 0),
-      ),
-    );
-  }
-});
-
-final exchangesProvider = FutureProvider<List<Exchange>>((ref) async {
-  final cancelToken = CancelToken();
-  ref.onDispose(cancelToken.cancel);
-
-  final exchanges = await ref.read(marketRepositoryProvider).getExchanges(cancelToken: cancelToken);
-  return exchanges;
 });
