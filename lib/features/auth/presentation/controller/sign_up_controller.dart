@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:crybse/features/auth/domain/providers/auth_provider.dart';
 import 'package:crybse/features/auth/domain/usecases/auth_usecase.dart';
-import 'package:crybse/features/auth/presentation/controller/state/sign_in_state.dart';
+import 'package:crybse/features/auth/presentation/controller/state/sign_up_state.dart';
 import 'package:crybse/features/auth/presentation/forms/email_form.dart';
 import 'package:crybse/features/auth/presentation/forms/password_form.dart';
 import 'package:crybse/shared/constants/exceptions.dart';
@@ -10,13 +10,20 @@ import 'package:formz/formz.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SignInController extends StateNotifier<SignInState> {
-  SignInController(this.authUsecase) : super(const SignInState());
+class SignUpController extends StateNotifier<SignUpState> {
+  SignUpController(this.authUsecase) : super(const SignUpState());
 
   final AuthUsecase authUsecase;
 
-  bool validate({EmailFormz? email, PasswordFormz? password}) {
-    return Formz.validate([email ?? state.email, password ?? state.password]);
+  bool validate(
+      {EmailFormz? email,
+      PasswordFormz? password,
+      PasswordFormz? confirmPassword}) {
+    return Formz.validate([
+      email ?? state.email,
+      password ?? state.password,
+      confirmPassword ?? state.confirmPassword
+    ]);
   }
 
   void updateEmail(String value) {
@@ -30,18 +37,25 @@ class SignInController extends StateNotifier<SignInState> {
         password: password, isValid: validate(password: password));
   }
 
-  Future<void> signInWithPassword() async {
+  void updateConfirmPassword(String value) {
+    final confirmPassword = PasswordFormz.dirty(value);
+    state = state.copyWith(
+        confirmPassword: confirmPassword,
+        isValid: validate(confirmPassword: confirmPassword));
+  }
+
+  Future<void> signUpWithPassword() async {
     if (!state.isValid) return;
     state =
         state.copyWith(status: FormzSubmissionStatus.inProgress, message: '');
     try {
-      await authUsecase.signInWithPassword(
+      await authUsecase.signUpWithPassword(
         email: state.email.value,
         password: state.password.value,
       );
       state = state.copyWith(
           status: FormzSubmissionStatus.success,
-          message: 'Sign in successfully!');
+          message: 'Sign up successfully!');
     } on AuthException catch (_) {
       state = state.copyWith(
           status: FormzSubmissionStatus.failure,
@@ -54,7 +68,7 @@ class SignInController extends StateNotifier<SignInState> {
   }
 }
 
-final signInNotifierProvider =
-    StateNotifierProvider<SignInController, SignInState>((ref) =>
-        SignInController(
+final signUpNotifierProvider =
+    StateNotifierProvider<SignUpController, SignUpState>((ref) =>
+        SignUpController(
             AuthUsecase(repository: ref.read(authRepositoryProvider))));

@@ -28,8 +28,15 @@ class AuthUsecase implements AuthRepository {
   }
 
   @override
-  Future<bool> signInWithPassword({required String email, required String password}) {
+  Future<bool> signInWithPassword(
+      {required String email, required String password}) {
     return repository.signInWithPassword(email: email, password: password);
+  }
+
+  @override
+  Future<bool> signUpWithPassword(
+      {required String email, required String password}) {
+    return repository.signUpWithPassword(email: email, password: password);
   }
 
   @override

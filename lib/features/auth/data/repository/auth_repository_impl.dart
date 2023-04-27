@@ -17,7 +17,9 @@ class AuthRepositoryImpl implements AuthRepository {
   final supabase.GoTrueClient authClient;
 
   /// Current authorized User
-  UserEntity? get currentUser => authClient.currentUser == null ? null : UserEntity.fromJson(authClient.currentUser!.toJson());
+  UserEntity? get currentUser => authClient.currentUser == null
+      ? null
+      : UserEntity.fromJson(authClient.currentUser!.toJson());
 
   @override
   Future<UserEntity?> restoreSession() async {
@@ -29,7 +31,8 @@ class AuthRepositoryImpl implements AuthRepository {
     final response = await authClient.recoverSession(res);
 
     if (response.session != null) {
-      await secureLocalStorage.persistSession(response.session?.persistSessionString ?? '');
+      await secureLocalStorage
+          .persistSession(response.session?.persistSessionString ?? '');
 
       return UserEntity.fromJson(response.user!.toJson());
     }
@@ -42,7 +45,8 @@ class AuthRepositoryImpl implements AuthRepository {
     final response = await authClient.setSession(token);
 
     if (response.session != null) {
-      await secureLocalStorage.persistSession(response.session?.persistSessionString ?? '');
+      await secureLocalStorage
+          .persistSession(response.session?.persistSessionString ?? '');
 
       return UserEntity.fromJson(response.user!.toJson());
     }
@@ -69,8 +73,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> signInWithPassword({required String email, required String password}) async {
-    final res = await authClient.signInWithPassword(email: email, password: password);
+  Future<bool> signInWithPassword(
+      {required String email, required String password}) async {
+    final res =
+        await authClient.signInWithPassword(email: email, password: password);
+    return res.session != null;
+  }
+
+  @override
+  Future<bool> signUpWithPassword(
+      {required String email, required String password}) async {
+    final res = await authClient.signUp(email: email, password: password);
     return res.session != null;
   }
 
