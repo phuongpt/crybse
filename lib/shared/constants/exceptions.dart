@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:dio/dio.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DataException implements Exception {
   DataException({required this.message});
@@ -31,6 +34,13 @@ class DataException implements Exception {
         message = LocaleKeys.errorInternetConnection;
         break;
     }
+  }
+
+  DataException.fromAuthError(AuthException error) {
+    if (error.statusCode != null) {
+      message = _handleError(int.parse(error.statusCode!));
+    }
+    message += ' (${error.message})';
   }
 
   DataException.fromApplicationError(Object exception) {

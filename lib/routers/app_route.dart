@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:crybse/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:crybse/features/home/pages/home_page.dart';
 import 'package:crybse/features/market/presentation/pages/market_page.dart';
 import 'package:crybse/features/market_detail/presentation/pages/maket_detail_page.dart';
@@ -18,5 +19,6 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: SearchPageRoute.page, path: SearchPage.routeName),
         AutoRoute(page: SettingsPageRoute.page, path: SettingsPage.routeName),
         AutoRoute(page: MarketDetailPageRoute.page, path: MarketDetailPage.routeName),
+        AutoRoute(page: SignInPageRoute.page, path: SignInPage.routeName),
       ];
 }

@@ -5,6 +5,7 @@ import 'package:crybse/features/market/presentation/providers/favorite_pair_prov
 import 'package:crybse/features/market/presentation/providers/market_provider.dart';
 import 'package:crybse/features/market/presentation/widgets/favorite_pair.dart';
 import 'package:crybse/features/market/presentation/widgets/pair_tile.dart';
+import 'package:crybse/routers/app_route.gr.dart';
 import 'package:crybse/shared/constants/keys.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +31,14 @@ class _MarketPageState extends ConsumerState<MarketPage> {
         children: [
           AppBar(
             toolbarHeight: 65,
-            title: const Text(
-              'CRYBSE',
-            ),
+            centerTitle: false,
+            title: const Text('CRYBSE'),
+            actions: [
+              IconButton(
+                onPressed: () => {AutoRouter.of(context).push(const SignInPageRoute())},
+                icon: const Icon(Icons.person_outline),
+              )
+            ],
           ),
           Expanded(
             child: Column(

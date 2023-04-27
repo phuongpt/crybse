@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:crybse/observers.dart';
+import 'package:crybse/app/observers.dart';
+import 'package:crybse/app/providers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,16 +25,22 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
+  var container = ProviderContainer(
+    overrides: [],
+    observers: [
+      Observers(),
+    ],
+  );
+  container = await initializeProviders(container);
+
   await runZonedGuarded(
     () async => runApp(
       EasyLocalization(
         supportedLocales: const [Locale('en'), Locale('es')],
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
-        child: ProviderScope(
-          observers: [
-            Observers(),
-          ],
+        child: UncontrolledProviderScope(
+          container: container,
           child: await builder(),
         ),
       ),

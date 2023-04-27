@@ -23,11 +23,15 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_secure_storage: ^8.0.0
+  font_awesome_flutter: ^10.4.0
+  formz: ^0.6.0
   freezed_annotation: ^2.2.0
   hooks_riverpod: ^2.3.5
   intl: ^0.17.0
   riverpod_annotation: ^2.1.0
   settings_ui: ^2.0.2
+  supabase_flutter: ^1.7.0
+  uni_links: ^0.5.1
 
 dev_dependencies:
   auto_route_generator: ^6.2.0

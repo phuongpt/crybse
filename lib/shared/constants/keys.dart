@@ -12,6 +12,8 @@ class Keys {
   static const SEARCH_SCREEN = Key('search_screen');
   static const SETTINGS_SCREEN = Key('settings_screen');
   static const DETAILS_SCREEN = Key('details_screen');
+  static const SIGNIN_SCREEN = Key('login_screen');
+  static const REGISTER_SCREEN = Key('register_screen');
 
   static const SEARCH_TEXT_FIELD = Key('seach_text_field');
 
