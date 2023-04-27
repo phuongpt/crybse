@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:crybse/features/auth/presentation/controller/sign_up_controller.dart';
+import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/routers/app_route.gr.dart';
 import 'package:crybse/shared/constants/dimension.dart';
 import 'package:crybse/shared/constants/keys.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -61,47 +63,39 @@ class SignUpFormWidget extends HookConsumerWidget {
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-            vertical: kMediumPadding, horizontal: kMinPadding),
+        padding: const EdgeInsets.symmetric(vertical: kMediumPadding, horizontal: kMinPadding),
         child: Column(
           children: [
             TextFormField(
               validator: (input) => email.error?.getMessage(),
-              onChanged: (value) =>
-                  ref.read(signUpNotifierProvider.notifier).updateEmail(value),
+              onChanged: (value) => ref.read(signUpNotifierProvider.notifier).updateEmail(value),
               keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.email_outlined),
-                labelText: 'Email',
-                hintText: 'Email',
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.email_outlined),
+                labelText: LocaleKeys.email.tr(),
+                hintText: LocaleKeys.email.tr(),
               ),
             ),
             const SizedBox(height: kMediumPadding),
             TextFormField(
               validator: (input) => password.error?.getMessage(),
-              onChanged: (value) => ref
-                  .read(signUpNotifierProvider.notifier)
-                  .updatePassword(value),
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.fingerprint),
-                labelText: 'Password',
-                hintText: 'Password',
-                suffixIcon: IconButton(
-                    onPressed: null, icon: Icon(Icons.remove_red_eye_sharp)),
+              onChanged: (value) => ref.read(signUpNotifierProvider.notifier).updatePassword(value),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.fingerprint),
+                labelText: LocaleKeys.password.tr(),
+                hintText: LocaleKeys.password.tr(),
+                suffixIcon: const IconButton(onPressed: null, icon: Icon(Icons.remove_red_eye_sharp)),
               ),
             ),
             const SizedBox(height: kMediumPadding),
             TextFormField(
               validator: (input) => confirmPassword.error?.getMessage(),
-              onChanged: (value) => ref
-                  .read(signUpNotifierProvider.notifier)
-                  .updateConfirmPassword(value),
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.fingerprint),
-                labelText: 'Confirm Password',
-                hintText: 'Confirm Password',
-                suffixIcon: IconButton(
-                    onPressed: null, icon: Icon(Icons.remove_red_eye_sharp)),
+              onChanged: (value) => ref.read(signUpNotifierProvider.notifier).updateConfirmPassword(value),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.fingerprint),
+                labelText: LocaleKeys.confirmPassword.tr(),
+                hintText: LocaleKeys.confirmPassword.tr(),
+                suffixIcon: const IconButton(onPressed: null, icon: Icon(Icons.remove_red_eye_sharp)),
               ),
             ),
             const SizedBox(height: kMediumPadding * 2),
@@ -112,28 +106,20 @@ class SignUpFormWidget extends HookConsumerWidget {
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () => ref
-                        .read(signUpNotifierProvider.notifier)
-                        .signUpWithPassword(),
+                    onPressed: () => ref.read(signUpNotifierProvider.notifier).signUpWithPassword(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).focusColor,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                     ),
-                    child: ref.watch(signUpNotifierProvider).status ==
-                            FormzSubmissionStatus.inProgress
+                    child: ref.watch(signUpNotifierProvider).status == FormzSubmissionStatus.inProgress
                         ? const SizedBox(
                             width: 30,
                             height: 30,
                             child: CircularProgressIndicator(),
                           )
-                        : Text('Sign Up',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .apply(
-                                  color:
-                                      Theme.of(context).scaffoldBackgroundColor,
+                        : Text(LocaleKeys.signup.tr(),
+                            style: Theme.of(context).textTheme.titleMedium!.apply(
+                                  color: Theme.of(context).scaffoldBackgroundColor,
                                 )),
                   )),
             ),
@@ -146,12 +132,12 @@ class SignUpFormWidget extends HookConsumerWidget {
                   },
                   child: Text.rich(
                     TextSpan(
-                      text: 'Already have an account ',
+                      text: LocaleKeys.haveAnAccount.tr(),
                       style: Theme.of(context).textTheme.titleMedium,
-                      children: const [
+                      children: [
                         TextSpan(
-                          text: 'Sign in',
-                          style: TextStyle(color: Colors.blue),
+                          text: ' ${LocaleKeys.signin.tr()}',
+                          style: const TextStyle(color: Colors.blue),
                         )
                       ],
                     ),

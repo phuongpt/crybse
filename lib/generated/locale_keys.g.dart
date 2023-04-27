@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const homeTitle = 'homeTitle';
   static const openChart = 'openChart';
   static const searchTitle = 'searchTitle';
@@ -40,5 +40,13 @@ abstract class  LocaleKeys {
   static const errorRequestNotFound = 'errorRequestNotFound';
   static const errorIntenalServer = 'errorIntenalServer';
   static const errorSomethingWentWrong = 'errorSomethingWentWrong';
-
+  static const email = 'email';
+  static const password = 'password';
+  static const confirmPassword = 'confirmPassword';
+  static const signin = 'signin';
+  static const signinWithGoogle = 'signinWithGoogle';
+  static const signup = 'signup';
+  static const or = 'or';
+  static const dontHaveAnAccount = 'dontHaveAnAccount';
+  static const haveAnAccount = 'haveAnAccount';
 }

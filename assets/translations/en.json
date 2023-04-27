@@ -37,5 +37,14 @@
     "errorBadRequest": "Bad request",
     "errorRequestNotFound": "The requested resource was not found",
     "errorIntenalServer": "Internal server error",
-    "errorSomethingWentWrong": "Something went wrong"
+    "errorSomethingWentWrong": "Something went wrong",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "signinWithGoogle": "Sign In With Google",
+    "or": "OR",
+    "dontHaveAnAccount": "Don't have an account",
+    "haveAnAccount": "Already have an account"
 }

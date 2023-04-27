@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:crybse/features/auth/presentation/controller/sign_in_controller.dart';
+import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:crybse/routers/app_route.gr.dart';
 import 'package:crybse/shared/constants/dimension.dart';
 import 'package:crybse/shared/constants/keys.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
@@ -54,42 +56,36 @@ class SignInFormWidget extends HookConsumerWidget {
           );
         }
         if (next.status == FormzSubmissionStatus.success) {
-          AutoRouter.of(context)
-              .pushAndPopUntil(const HomePageRoute(), predicate: (_) => false);
+          AutoRouter.of(context).pushAndPopUntil(const HomePageRoute(), predicate: (_) => false);
         }
       },
     );
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-            vertical: kMediumPadding, horizontal: kMinPadding),
+        padding: const EdgeInsets.symmetric(vertical: kMediumPadding, horizontal: kMinPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
               validator: (input) => email.error?.getMessage(),
-              onChanged: (value) =>
-                  ref.read(signInNotifierProvider.notifier).updateEmail(value),
+              onChanged: (value) => ref.read(signInNotifierProvider.notifier).updateEmail(value),
               keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.email_outlined),
-                labelText: 'Email',
-                hintText: 'Email',
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.email_outlined),
+                labelText: LocaleKeys.email.tr(),
+                hintText: LocaleKeys.email.tr(),
               ),
             ),
             const SizedBox(height: kMediumPadding),
             TextFormField(
               validator: (input) => password.error?.getMessage(),
-              onChanged: (value) => ref
-                  .read(signInNotifierProvider.notifier)
-                  .updatePassword(value),
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.fingerprint),
-                labelText: 'Password',
-                hintText: 'Password',
-                suffixIcon: IconButton(
-                    onPressed: null, icon: Icon(Icons.remove_red_eye_sharp)),
+              onChanged: (value) => ref.read(signInNotifierProvider.notifier).updatePassword(value),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.fingerprint),
+                labelText: LocaleKeys.password.tr(),
+                hintText: LocaleKeys.password.tr(),
+                suffixIcon: const IconButton(onPressed: null, icon: Icon(Icons.remove_red_eye_sharp)),
               ),
             ),
             const SizedBox(height: kMediumPadding * 2),
@@ -100,51 +96,41 @@ class SignInFormWidget extends HookConsumerWidget {
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () => ref
-                        .read(signInNotifierProvider.notifier)
-                        .signInWithPassword(),
+                    onPressed: () => ref.read(signInNotifierProvider.notifier).signInWithPassword(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).focusColor,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                     ),
-                    child: ref.watch(signInNotifierProvider).status ==
-                            FormzSubmissionStatus.inProgress
+                    child: ref.watch(signInNotifierProvider).status == FormzSubmissionStatus.inProgress
                         ? const SizedBox(
                             width: 30,
                             height: 30,
                             child: CircularProgressIndicator(),
                           )
-                        : Text('Sign In',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .apply(
-                                  color:
-                                      Theme.of(context).scaffoldBackgroundColor,
+                        : Text(LocaleKeys.signin.tr(),
+                            style: Theme.of(context).textTheme.titleMedium!.apply(
+                                  color: Theme.of(context).scaffoldBackgroundColor,
                                 )),
                   )),
             ),
             Column(
               children: [
                 const SizedBox(height: kMediumPadding),
-                Text('OR', style: Theme.of(context).textTheme.titleLarge),
+                Text(LocaleKeys.or.tr(), style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: kMediumPadding),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: kMediumPadding),
+                  padding: const EdgeInsets.symmetric(horizontal: kMediumPadding),
                   width: double.infinity,
                   height: 45,
                   child: OutlinedButton.icon(
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Colors.blue, width: 1.5),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                       textStyle: Theme.of(context).textTheme.titleMedium,
                     ),
                     icon: const Icon(FontAwesomeIcons.google),
                     onPressed: () {},
-                    label: const Text('Sign in with Google'),
+                    label: Text(LocaleKeys.signinWithGoogle.tr()),
                   ),
                 ),
                 const SizedBox(height: kMediumPadding),
@@ -156,12 +142,12 @@ class SignInFormWidget extends HookConsumerWidget {
                   },
                   child: Text.rich(
                     TextSpan(
-                      text: "Don't have an account ",
+                      text: LocaleKeys.dontHaveAnAccount.tr(),
                       style: Theme.of(context).textTheme.titleMedium,
-                      children: const [
+                      children: [
                         TextSpan(
-                          text: 'Sign up',
-                          style: TextStyle(color: Colors.blue),
+                          text: ' ${LocaleKeys.signup.tr()}',
+                          style: const TextStyle(color: Colors.blue),
                         )
                       ],
                     ),
