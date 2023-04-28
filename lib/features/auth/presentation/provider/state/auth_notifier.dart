@@ -28,11 +28,24 @@ class AuthNotifier extends StateNotifier<AuthState> {
   Future<void> _initialize() async {
     /// try to restore saved session
     final res = await repository.restoreSession();
-    state.maybeWhen(orElse: _handleInitialDeepLink, data: (data) => res);
+
+    if (res == null) {
+      /// try to create session from deep link
+      await _handleInitialDeepLink();
+    }
 
     /// listen to auth changes
     repository.authStateChange((user) {
-      state.maybeWhen(orElse: () => null, data: (data) => user);
+      if (user != null) {
+        state = AuthState.data(data: user);
+      } else {
+        state = const AuthState.initial();
+      }
     });
+  }
+
+  /// Signs out user
+  Future<void> signOut() async {
+    await repository.signOut();
   }
 }
