@@ -3,8 +3,6 @@ import 'package:crybse/features/market/domain/usecases/market_usecase.dart';
 import 'package:crybse/features/market/presentation/providers/state/market_notifier.dart';
 import 'package:crybse/features/market/presentation/providers/state/market_state.dart';
 import 'package:crybse/features/settings/presentation/providers/settings_provider.dart';
-import 'package:crybse/generated/locale_keys.g.dart';
-import 'package:crybse/shared/constants/exceptions.dart';
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:crybse/shared/providers/time_provider.dart';
 import 'package:dio/dio.dart';
@@ -12,8 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final marketNotifierProvider = StateNotifierProvider<MarketNotifier, MarketState>((ref) {
   final settings = ref.watch(settingsProvider);
-  final exchangeName =
-      settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => throw DataException(message: LocaleKeys.errorSomethingWentWrong));
+  final exchangeName = settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => '');
 
   return MarketNotifier(usecase: MarketUsecase(repository: ref.read(marketRepositoryProvider)))..getPairs(exchangeName);
 });

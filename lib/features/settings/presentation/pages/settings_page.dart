@@ -47,7 +47,10 @@ class SettingsPage extends HookConsumerWidget {
                         tiles: [
                           SettingsTile(
                             title: Text(LocaleKeys.language.tr()),
-                            value: Text(details.currentLanguage.tr()),
+                            value: Text(
+                              details.currentLanguage.tr(),
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                             leading: const Icon(Icons.language),
                             onPressed: (BuildContext ctx) => showLenguageSelectionDialog(context, ref, details.currentLanguage),
                           ),
@@ -58,13 +61,19 @@ class SettingsPage extends HookConsumerWidget {
                         tiles: [
                           SettingsTile(
                             title: Text(LocaleKeys.exchange.tr()),
-                            value: Text(details.favoriteExchange.toUpperCase()),
+                            value: Text(
+                              details.favoriteExchange.toUpperCase(),
+                              style: Theme.of(context).textTheme.titleMedium!.apply(color: Colors.grey[600]),
+                            ),
                             leading: const Icon(Icons.graphic_eq),
-                            onPressed: (BuildContext context) => showExchangeSelectDialog(context, ref, exchanges),
+                            // onPressed: (BuildContext context) => showExchangeSelectDialog(context, ref, exchanges),
                           ),
                           SettingsTile(
                             title: Text(LocaleKeys.topPair.tr()),
-                            value: Text(Helper.convertPairName(details.favoritePair)),
+                            value: Text(
+                              Helper.convertPairName(details.favoritePair),
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                             leading: const Icon(Icons.language),
                             onPressed: (BuildContext context) => showTopPairSelectDialog(context, ref, market),
                           ),
@@ -75,7 +84,10 @@ class SettingsPage extends HookConsumerWidget {
                         tiles: [
                           SettingsTile(
                             title: Text(LocaleKeys.appTheme.tr()),
-                            value: Text(details.themeMode),
+                            value: Text(
+                              details.themeMode,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                             leading: const Icon(Icons.graphic_eq),
                             onPressed: (BuildContext context) => showThemeSelectDialog(context, ref, details.themeMode),
                           ),
