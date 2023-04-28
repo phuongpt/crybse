@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:crybse/features/favorite/presentation/pages/favorite_page.dart';
 import 'package:crybse/features/market/presentation/pages/market_page.dart';
 import 'package:crybse/features/search/pages/search_page.dart';
 import 'package:crybse/features/settings/presentation/pages/settings_page.dart';
@@ -35,6 +36,13 @@ class HomePage extends HookConsumerWidget {
             ),
           ),
           BottomNavigationBarItem(
+            label: LocaleKeys.favoriteTitle.tr(),
+            icon: const Icon(
+              Icons.collections_bookmark,
+              key: Keys.NAV_FAVORITE,
+            ),
+          ),
+          BottomNavigationBarItem(
             label: LocaleKeys.searchTitle.tr(),
             icon: const Icon(
               Icons.search,
@@ -58,8 +66,10 @@ class HomePage extends HookConsumerWidget {
       case 0:
         return const MarketPage();
       case 1:
-        return const SearchPage();
+        return const FavoritePage();
       case 2:
+        return const SearchPage();
+      case 3:
         return const SettingsPage();
       default:
         return Container();

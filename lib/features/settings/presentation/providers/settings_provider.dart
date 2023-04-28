@@ -1,4 +1,4 @@
-import 'package:crybse/features/market/domain/provider/market_provider.dart';
+import 'package:crybse/features/market/domain/provider/market_repository_provider.dart';
 import 'package:crybse/features/market/domain/usecases/market_usecase.dart';
 import 'package:crybse/features/market/presentation/providers/market_provider.dart';
 import 'package:crybse/generated/locale_keys.g.dart';

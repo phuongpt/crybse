@@ -13,7 +13,6 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.1.1
   easy_localization: ^3.0.1
-  equatable: ^2.0.5
   fl_chart: ^0.62.0
   flutter:
     sdk: flutter
@@ -29,6 +28,7 @@ dependencies:
   settings_ui: ^2.0.2
   supabase_flutter: ^1.7.0
   uni_links: ^0.5.1
+  uuid: ^3.0.7
 
 dev_dependencies:
   auto_route_generator: ^6.2.0
@@ -36,8 +36,8 @@ dev_dependencies:
   flutter_gen_runner: ^5.3.0
   flutter_test:
     sdk: flutter
-  freezed: null
-  json_serializable: null
+  freezed: ^2.3.2
+  json_serializable: ^6.6.1
   mocktail: ^0.3.0
   very_good_analysis: ^3.1.0
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class Keys {
   static const NAV_BAR = Key('nav_bar');
   static const NAV_HOME = Key('nav_home');
+  static const NAV_FAVORITE = Key('nav_favorite');
   static const NAV_SEARCH = Key('nav_search');
   static const NAV_SETTINGS = Key('nav_settings');
 

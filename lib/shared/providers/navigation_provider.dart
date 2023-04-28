@@ -2,7 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final navigationProvider = StateNotifierProvider<NavigationNotifier, PageModel>((ref) => NavigationNotifier());
 
-enum NavigationBarEvent { HOME, SEARCH, SETTINGS }
+enum NavigationBarEvent { HOME, FAVORITES, SEARCH, SETTINGS }
 
 class NavigationNotifier extends StateNotifier<PageModel> {
   NavigationNotifier() : super(defaultPage);
@@ -15,9 +15,12 @@ class NavigationNotifier extends StateNotifier<PageModel> {
         state = PageModel(NavigationBarEvent.HOME, i);
         break;
       case 1:
-        state = PageModel(NavigationBarEvent.SEARCH, i);
+        state = PageModel(NavigationBarEvent.FAVORITES, i);
         break;
       case 2:
+        state = PageModel(NavigationBarEvent.SEARCH, i);
+        break;
+      case 3:
         state = PageModel(NavigationBarEvent.SETTINGS, i);
         break;
     }

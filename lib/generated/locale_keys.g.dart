@@ -2,6 +2,7 @@
 
 abstract class LocaleKeys {
   static const homeTitle = 'homeTitle';
+  static const favoriteTitle = 'favoriteTitle';
   static const openChart = 'openChart';
   static const searchTitle = 'searchTitle';
   static const searchBar = 'searchBar';
