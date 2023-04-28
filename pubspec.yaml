@@ -26,7 +26,7 @@ dependencies:
   hooks_riverpod: ^2.3.5
   riverpod_annotation: ^2.1.0
   settings_ui: ^2.0.2
-  supabase_flutter: ^1.7.0
+  supabase_flutter: ^1.8.0
   uni_links: ^0.5.1
   uuid: ^3.0.7
 
