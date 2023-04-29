@@ -3,9 +3,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:crybse/features/auth/presentation/provider/auth_provider.dart';
 import 'package:crybse/features/favorite/presentation/providers/favorite_provider.dart';
-import 'package:crybse/features/market/presentation/providers/market_provider.dart';
-import 'package:crybse/features/market/presentation/widgets/pair_tile.dart';
-import 'package:crybse/generated/locale_keys.g.dart';
+import 'package:crybse/features/market/presentation/provider/market_provider.dart';
+import 'package:crybse/features/market/presentation/widget/pair_tile.dart';
+import 'package:crybse/gen/locale_keys.g.dart';
 import 'package:crybse/routers/app_route.gr.dart';
 import 'package:crybse/shared/constants/keys.dart';
 import 'package:crybse/shared/domain/models/market/pair/pair.dart';

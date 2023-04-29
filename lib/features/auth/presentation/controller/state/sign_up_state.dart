@@ -1,5 +1,5 @@
-import 'package:crybse/features/auth/presentation/forms/email_form.dart';
-import 'package:crybse/features/auth/presentation/forms/password_form.dart';
+import 'package:crybse/features/auth/presentation/form/email_form.dart';
+import 'package:crybse/features/auth/presentation/form/password_form.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

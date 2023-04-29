@@ -1,5 +1,5 @@
-import 'package:crybse/features/auth/domain/providers/auth_provider.dart';
-import 'package:crybse/features/auth/domain/providers/supabase_provider.dart';
+import 'package:crybse/features/auth/domain/provider/auth_provider.dart';
+import 'package:crybse/features/auth/domain/provider/supabase_provider.dart';
 import 'package:crybse/features/favorite/data/repository/favorite_repository_impl.dart';
 import 'package:crybse/features/favorite/domain/repository/favorite_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

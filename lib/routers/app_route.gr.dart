@@ -9,22 +9,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:crybse/features/auth/presentation/pages/sign_in_page.dart'
-    as _i4;
-import 'package:crybse/features/auth/presentation/pages/sign_up_page.dart'
-    as _i5;
-import 'package:crybse/features/favorite/presentation/pages/favorite_page.dart'
-    as _i7;
-import 'package:crybse/features/home/pages/home_page.dart' as _i2;
-import 'package:crybse/features/market/presentation/pages/market_page.dart'
-    as _i9;
-import 'package:crybse/features/market_detail/presentation/pages/maket_detail_page.dart'
-    as _i6;
-import 'package:crybse/features/search/pages/search_page.dart' as _i8;
-import 'package:crybse/features/settings/presentation/pages/settings_page.dart'
-    as _i1;
-import 'package:crybse/features/splash/presentation/pages/splash_page.dart'
-    as _i3;
+import 'package:crybse/features/auth/presentation/page/sign_in_page.dart' as _i4;
+import 'package:crybse/features/auth/presentation/page/sign_up_page.dart' as _i5;
+import 'package:crybse/features/favorite/presentation/pages/favorite_page.dart' as _i7;
+import 'package:crybse/features/home/page/home_page.dart' as _i2;
+import 'package:crybse/features/market/presentation/page/market_page.dart' as _i9;
+import 'package:crybse/features/market_detail/presentation/page/maket_detail_page.dart' as _i6;
+import 'package:crybse/features/search/presentation/page/search_page.dart' as _i8;
+import 'package:crybse/features/settings/presentation/page/settings_page.dart' as _i1;
+import 'package:crybse/features/splash/presentation/page/splash_page.dart' as _i3;
 import 'package:crybse/shared/domain/models/market/market.dart' as _i12;
 import 'package:flutter/material.dart' as _i11;
 
@@ -166,8 +159,7 @@ class SignUpPageRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.MarketDetailPage]
-class MarketDetailPageRoute
-    extends _i10.PageRouteInfo<MarketDetailPageRouteArgs> {
+class MarketDetailPageRoute extends _i10.PageRouteInfo<MarketDetailPageRouteArgs> {
   MarketDetailPageRoute({
     _i11.Key? key,
     required _i12.Pair pair,
@@ -183,8 +175,7 @@ class MarketDetailPageRoute
 
   static const String name = 'MarketDetailPageRoute';
 
-  static const _i10.PageInfo<MarketDetailPageRouteArgs> page =
-      _i10.PageInfo<MarketDetailPageRouteArgs>(name);
+  static const _i10.PageInfo<MarketDetailPageRouteArgs> page = _i10.PageInfo<MarketDetailPageRouteArgs>(name);
 }
 
 class MarketDetailPageRouteArgs {

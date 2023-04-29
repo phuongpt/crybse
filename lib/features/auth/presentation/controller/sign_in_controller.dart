@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:crybse/features/auth/domain/providers/auth_provider.dart';
+import 'package:crybse/features/auth/domain/provider/auth_provider.dart';
 import 'package:crybse/features/auth/domain/usecases/auth_usecase.dart';
 import 'package:crybse/features/auth/presentation/controller/state/sign_in_state.dart';
-import 'package:crybse/features/auth/presentation/forms/email_form.dart';
-import 'package:crybse/features/auth/presentation/forms/password_form.dart';
+import 'package:crybse/features/auth/presentation/form/email_form.dart';
+import 'package:crybse/features/auth/presentation/form/password_form.dart';
 import 'package:crybse/shared/constants/exceptions.dart';
 import 'package:formz/formz.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

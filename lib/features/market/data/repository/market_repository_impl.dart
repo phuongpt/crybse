@@ -1,5 +1,5 @@
 import 'package:crybse/features/market/data/datasource/market_remote_datasource.dart';
-import 'package:crybse/features/market/domain/repositories/market_repository_interface.dart';
+import 'package:crybse/features/market/domain/repository/market_repository_interface.dart';
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:dio/dio.dart';
 

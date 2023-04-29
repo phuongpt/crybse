@@ -1,4 +1,4 @@
-import 'package:crybse/features/settings/presentation/providers/settings_provider.dart';
+import 'package:crybse/features/settings/presentation/provider/settings_provider.dart';
 import 'package:crybse/routers/app_route.dart';
 import 'package:crybse/shared/constants/app_theme.dart';
 import 'package:crybse/shared/constants/utils.dart' as utils;
