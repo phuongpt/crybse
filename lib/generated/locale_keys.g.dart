@@ -41,6 +41,7 @@ abstract class LocaleKeys {
   static const errorRequestNotFound = 'errorRequestNotFound';
   static const errorIntenalServer = 'errorIntenalServer';
   static const errorSomethingWentWrong = 'errorSomethingWentWrong';
+  static const errorUserNotFound = 'errorUserNotFound';
   static const email = 'email';
   static const password = 'password';
   static const confirmPassword = 'confirmPassword';

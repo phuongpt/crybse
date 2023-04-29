@@ -17,6 +17,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final supabase.GoTrueClient authClient;
 
   /// Current authorized User
+  @override
   UserEntity? get currentUser => authClient.currentUser == null ? null : UserEntity.fromJson(authClient.currentUser!.toJson());
 
   @override

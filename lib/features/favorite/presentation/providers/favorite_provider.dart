@@ -5,5 +5,6 @@ import 'package:crybse/features/favorite/presentation/providers/state/favorite_s
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final favoriteNotifierProvider = StateNotifierProvider<FavoriteNotifier, FavoriteState>((ref) {
-  return FavoriteNotifier(usecase: FavoriteUsecase(repository: ref.read(favoriteRepositoryProvider)))..getFavorites();
+  final notifier = FavoriteNotifier(usecase: FavoriteUsecase(repository: ref.watch(favoriteRepositoryProvider)))..getFavorites();
+  return notifier;
 });

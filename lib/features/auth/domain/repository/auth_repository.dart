@@ -6,12 +6,10 @@ abstract class AuthRepository {
   Future<bool> signInWithGoogle();
 
   /// Sign in with Password
-  Future<bool> signInWithPassword(
-      {required String email, required String password});
+  Future<bool> signInWithPassword({required String email, required String password});
 
   /// Sign in with Password
-  Future<bool> signUpWithPassword(
-      {required String email, required String password});
+  Future<bool> signUpWithPassword({required String email, required String password});
 
   /// Sign out
   Future<bool> signOut();
@@ -26,4 +24,6 @@ abstract class AuthRepository {
 
   /// restore session from token
   Future<UserEntity?> restoreSession();
+
+  UserEntity? get currentUser;
 }

@@ -5,6 +5,7 @@ class AuthUsecase implements AuthRepository {
   AuthUsecase({required this.repository});
 
   final AuthRepository repository;
+
   @override
   void authStateChange(void Function(UserEntity? userEntity) callback) {
     repository.authStateChange((userEntity) {
@@ -28,14 +29,12 @@ class AuthUsecase implements AuthRepository {
   }
 
   @override
-  Future<bool> signInWithPassword(
-      {required String email, required String password}) {
+  Future<bool> signInWithPassword({required String email, required String password}) {
     return repository.signInWithPassword(email: email, password: password);
   }
 
   @override
-  Future<bool> signUpWithPassword(
-      {required String email, required String password}) {
+  Future<bool> signUpWithPassword({required String email, required String password}) {
     return repository.signUpWithPassword(email: email, password: password);
   }
 
@@ -43,4 +42,7 @@ class AuthUsecase implements AuthRepository {
   Future<bool> signOut() {
     return repository.signOut();
   }
+
+  @override
+  UserEntity? get currentUser => repository.currentUser;
 }

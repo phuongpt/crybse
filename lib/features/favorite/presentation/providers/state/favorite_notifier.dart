@@ -11,6 +11,11 @@ class FavoriteNotifier extends StateNotifier<FavoriteState> {
 
   final FavoriteUsecase usecase;
 
+  Future<void> refresh() async {
+    state = const FavoriteState.initial();
+    return getFavorites();
+  }
+
   Future<void> getFavorites() async {
     try {
       final results = await usecase.getFavorites();

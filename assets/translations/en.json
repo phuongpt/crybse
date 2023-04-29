@@ -38,6 +38,7 @@
     "errorRequestNotFound": "The requested resource was not found",
     "errorIntenalServer": "Internal server error",
     "errorSomethingWentWrong": "Something went wrong",
+    "errorUserNotFound": "Please sign in to continue!",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",

@@ -4,6 +4,8 @@ import 'package:crybse/generated/locale_keys.g.dart';
 import 'package:dio/dio.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+enum DataExceptionMessageCode { UserNotFound }
+
 class DataException implements Exception {
   DataException({required this.message});
 
@@ -43,8 +45,12 @@ class DataException implements Exception {
     message += ' (${error.message})';
   }
 
-  DataException.fromApplicationError(Object exception) {
-    message = LocaleKeys.errorSomethingWentWrong;
+  DataException.fromApplicationError(dynamic exception) {
+    if (exception.message != null && exception.message == DataExceptionMessageCode.UserNotFound) {
+      message = LocaleKeys.errorUserNotFound;
+    } else {
+      message = LocaleKeys.errorSomethingWentWrong;
+    }
   }
 
   String message = '';
