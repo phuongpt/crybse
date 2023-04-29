@@ -44,6 +44,7 @@
     "confirmPassword": "Confirm Password",
     "signin": "Sign In",
     "signup": "Sign Up",
+    "signout": "Sign Out",
     "signinWithGoogle": "Sign In With Google",
     "or": "OR",
     "dontHaveAnAccount": "Don't have an account",

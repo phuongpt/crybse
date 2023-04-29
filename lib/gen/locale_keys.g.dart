@@ -48,6 +48,7 @@ abstract class LocaleKeys {
   static const signin = 'signin';
   static const signinWithGoogle = 'signinWithGoogle';
   static const signup = 'signup';
+  static const signout = 'signout';
   static const or = 'or';
   static const dontHaveAnAccount = 'dontHaveAnAccount';
   static const haveAnAccount = 'haveAnAccount';

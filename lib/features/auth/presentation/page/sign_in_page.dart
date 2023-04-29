@@ -67,7 +67,7 @@ class SignOutWidget extends HookConsumerWidget {
           child: Center(
             child: TextButton(
               child: Text(
-                'Logout',
+                LocaleKeys.signout.tr(),
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               onPressed: () => ref.read(authNotifierProvider.notifier).signOut(),

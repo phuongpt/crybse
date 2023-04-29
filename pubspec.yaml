@@ -24,6 +24,7 @@ dependencies:
   formz: ^0.6.0
   freezed_annotation: ^2.2.0
   hooks_riverpod: ^2.3.5
+  lottie: ^2.3.2
   riverpod_annotation: ^2.1.0
   settings_ui: ^2.0.2
   supabase_flutter: ^1.7.0
@@ -48,4 +49,5 @@ flutter:
   assets:
     - assets/translations/
     - assets/icon/icon.png
+    - assets/lottie/bitcoin.json
     - .env
