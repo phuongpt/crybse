@@ -1,7 +1,7 @@
 // ignore_for_file: inference_failure_on_function_invocation, one_member_abstracts
 
 import 'package:crybse/features/market/data/models/market_response/market_response.dart';
-import 'package:crybse/shared/constants/exceptions.dart';
+import 'package:crybse/shared/core/constants/exceptions.dart';
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

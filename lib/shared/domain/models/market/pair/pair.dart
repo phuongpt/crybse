@@ -1,4 +1,4 @@
-import 'package:crybse/shared/domain/helpers/helper.dart';
+import 'package:crybse/shared/core/helpers/pair_helper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'pair.g.dart';
 part 'pair.freezed.dart';
@@ -17,7 +17,7 @@ abstract class Pair with _$Pair {
 
   factory Pair.fromJson(Map<String, dynamic> json) {
     return _$PairFromJson(json).copyWith(
-      pairName: Helper.convertPairName(json['pair'] as String),
+      pairName: PairHelper.convertPairName(json['pair'] as String),
     );
   }
 }

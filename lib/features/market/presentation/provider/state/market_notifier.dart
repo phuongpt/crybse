@@ -1,6 +1,6 @@
 import 'package:crybse/features/market/domain/usecases/market_usecase.dart';
 import 'package:crybse/features/market/presentation/provider/state/market_state.dart';
-import 'package:crybse/shared/constants/exceptions.dart';
+import 'package:crybse/shared/core/constants/exceptions.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MarketNotifier extends StateNotifier<MarketState> {

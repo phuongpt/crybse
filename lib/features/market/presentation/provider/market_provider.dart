@@ -12,7 +12,13 @@ final marketNotifierProvider = StateNotifierProvider<MarketNotifier, MarketState
   final settings = ref.watch(settingsProvider);
   final exchangeName = settings.maybeWhen(data: (details) => details.favoriteExchange, orElse: () => '');
 
-  return MarketNotifier(usecase: MarketUsecase(repository: ref.read(marketRepositoryProvider)))..getPairs(exchangeName);
+  final notifier = MarketNotifier(usecase: MarketUsecase(repository: ref.read(marketRepositoryProvider)));
+
+  if (exchangeName.isNotEmpty) {
+    notifier.getPairs(exchangeName);
+  }
+
+  return notifier;
 });
 
 final pairSummaryProvider = FutureProvider.family<PairSummary, Pair>((ref, pair) async {

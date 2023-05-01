@@ -1,4 +1,4 @@
-package com.example.verygoodcore.crybse
+package com.opapp.crybse
 
 import io.flutter.embedding.android.FlutterActivity
 

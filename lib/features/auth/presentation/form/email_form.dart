@@ -1,4 +1,4 @@
-import 'package:crybse/shared/validators/string_validator.dart';
+import 'package:crybse/shared/core/validators/string_validator.dart';
 import 'package:formz/formz.dart';
 
 enum EmailValidationError {

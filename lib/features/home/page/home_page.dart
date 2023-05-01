@@ -4,7 +4,7 @@ import 'package:crybse/features/market/presentation/page/market_page.dart';
 import 'package:crybse/features/search/presentation/page/search_page.dart';
 import 'package:crybse/features/settings/presentation/page/settings_page.dart';
 import 'package:crybse/gen/locale_keys.g.dart';
-import 'package:crybse/shared/constants/keys.dart';
+import 'package:crybse/shared/core/constants/keys.dart';
 import 'package:crybse/shared/providers/navigation_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

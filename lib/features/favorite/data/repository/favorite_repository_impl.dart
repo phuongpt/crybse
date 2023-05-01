@@ -3,7 +3,7 @@
 import 'package:crybse/features/auth/domain/repository/auth_repository.dart';
 import 'package:crybse/features/favorite/data/models/favorite_response.dart';
 import 'package:crybse/features/favorite/domain/repository/favorite_repository.dart';
-import 'package:crybse/shared/constants/exceptions.dart';
+import 'package:crybse/shared/core/constants/exceptions.dart';
 import 'package:crybse/shared/domain/models/favorite/favorite.dart';
 import 'package:crybse/shared/domain/models/market/pair/pair.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;

@@ -4,9 +4,9 @@ import 'package:crybse/features/market/presentation/provider/state/market_state.
 import 'package:crybse/features/settings/presentation/provider/exchange_provider.dart';
 import 'package:crybse/features/settings/presentation/provider/settings_provider.dart';
 import 'package:crybse/gen/locale_keys.g.dart';
-import 'package:crybse/shared/constants/keys.dart';
-import 'package:crybse/shared/constants/utils.dart' as utils;
-import 'package:crybse/shared/domain/helpers/helper.dart';
+import 'package:crybse/shared/core/constants/keys.dart';
+import 'package:crybse/shared/core/constants/utils.dart' as utils;
+import 'package:crybse/shared/core/helpers/pair_helper.dart';
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,6 @@ class SettingsPage extends HookConsumerWidget {
     final market = ref.watch(marketNotifierProvider);
 
     final details = settings.maybeWhen(data: (details) => details, orElse: () => null);
-
     return details != null
         ? Container(
             key: Keys.SETTINGS_SCREEN,
@@ -71,7 +70,7 @@ class SettingsPage extends HookConsumerWidget {
                           SettingsTile(
                             title: Text(LocaleKeys.topPair.tr()),
                             value: Text(
-                              Helper.convertPairName(details.favoritePair),
+                              PairHelper.convertPairName(details.favoritePair),
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             leading: const Icon(Icons.language),
@@ -85,7 +84,7 @@ class SettingsPage extends HookConsumerWidget {
                           SettingsTile(
                             title: Text(LocaleKeys.appTheme.tr()),
                             value: Text(
-                              details.themeMode,
+                              details.themeMode.tr(),
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             leading: const Icon(Icons.graphic_eq),

@@ -1,5 +1,5 @@
 import 'package:crybse/gen/locale_keys.g.dart';
-import 'package:crybse/shared/constants/utils.dart' as utils;
+import 'package:crybse/shared/core/constants/utils.dart' as utils;
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

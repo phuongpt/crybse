@@ -7,7 +7,7 @@ import 'package:crybse/features/market/presentation/provider/market_provider.dar
 import 'package:crybse/features/market/presentation/widget/pair_tile.dart';
 import 'package:crybse/gen/locale_keys.g.dart';
 import 'package:crybse/routers/app_route.gr.dart';
-import 'package:crybse/shared/constants/keys.dart';
+import 'package:crybse/shared/core/constants/keys.dart';
 import 'package:crybse/shared/domain/models/market/pair/pair.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,11 @@ class _FavoritePageState extends ConsumerState<FavoritePage> {
                 ),
               ),
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (error) => Center(child: Text(error.toString().tr())),
+              error: (error) => Center(
+                  child: Text(
+                error.toString().tr(),
+                style: Theme.of(context).textTheme.titleSmall,
+              )),
               initial: () => const Center(child: CircularProgressIndicator()),
             ),
           ),

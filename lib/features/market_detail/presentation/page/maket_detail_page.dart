@@ -5,10 +5,10 @@ import 'package:crybse/features/market/presentation/widget/line_chart.dart';
 import 'package:crybse/features/market_detail/presentation/widget/market_detail_widget.dart';
 import 'package:crybse/features/market_detail/presentation/widget/time_bar_selector.dart';
 import 'package:crybse/features/market_detail/presentation/widget/title_price_detail.dart';
-import 'package:crybse/shared/constants/keys.dart';
-import 'package:crybse/shared/constants/utils.dart' as utils;
+import 'package:crybse/shared/core/constants/keys.dart';
+import 'package:crybse/shared/core/constants/utils.dart' as utils;
+import 'package:crybse/shared/core/extensions/list_extenstion.dart';
 import 'package:crybse/shared/domain/models/market/market.dart';
-import 'package:crybse/shared/extensions/list_extenstion.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

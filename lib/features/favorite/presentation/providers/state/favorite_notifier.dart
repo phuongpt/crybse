@@ -2,7 +2,7 @@
 
 import 'package:crybse/features/favorite/domain/usecases/favorite_usecase.dart';
 import 'package:crybse/features/favorite/presentation/providers/state/favorite_state.dart';
-import 'package:crybse/shared/constants/exceptions.dart';
+import 'package:crybse/shared/core/constants/exceptions.dart';
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

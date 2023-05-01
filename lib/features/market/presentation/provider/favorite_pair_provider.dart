@@ -2,8 +2,8 @@ import 'package:crybse/features/market/domain/provider/market_repository_provide
 import 'package:crybse/features/market/domain/usecases/market_usecase.dart';
 import 'package:crybse/features/settings/presentation/provider/settings_provider.dart';
 import 'package:crybse/gen/locale_keys.g.dart';
-import 'package:crybse/shared/constants/exceptions.dart';
-import 'package:crybse/shared/domain/helpers/helper.dart';
+import 'package:crybse/shared/core/constants/exceptions.dart';
+import 'package:crybse/shared/core/helpers/pair_helper.dart';
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,7 +25,7 @@ final favoritePairProvider = FutureProvider<FavoritePair>((ref) async {
 
     final pairSummary = await usecase.getPairSummary(exchangeName, pair, cancelToken: cancelToken);
     return FavoritePair(
-      pair: Pair(pair: pair, exchange: exchangeName, pairName: Helper.convertPairName(pair)),
+      pair: Pair(pair: pair, exchange: exchangeName, pairName: PairHelper.convertPairName(pair)),
       pairSummary: pairSummary,
     );
   } on DataException catch (error) {

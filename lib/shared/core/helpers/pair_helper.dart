@@ -1,4 +1,4 @@
-class Helper {
+class PairHelper {
   static String convertPairName(String pair) {
     final regex = RegExp(r'^(\w+?)(eth|btc|usdc|usdt|eur|bnb|busd|dai|pax|trx|tusd|xrpbull|xrpbear|usd)?$');
     final match = regex.firstMatch(pair.toLowerCase());

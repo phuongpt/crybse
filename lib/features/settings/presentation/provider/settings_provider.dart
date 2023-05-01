@@ -2,8 +2,8 @@ import 'package:crybse/features/market/domain/provider/market_repository_provide
 import 'package:crybse/features/market/domain/usecases/market_usecase.dart';
 import 'package:crybse/features/market/presentation/provider/market_provider.dart';
 import 'package:crybse/gen/locale_keys.g.dart';
-import 'package:crybse/shared/constants/exceptions.dart';
-import 'package:crybse/shared/constants/utils.dart' as utils;
+import 'package:crybse/shared/core/constants/exceptions.dart';
+import 'package:crybse/shared/core/constants/utils.dart' as utils;
 import 'package:crybse/shared/domain/models/model.dart';
 import 'package:crybse/shared/providers/providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

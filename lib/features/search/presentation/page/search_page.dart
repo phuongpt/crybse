@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:crybse/features/market/presentation/widget/pair_tile.dart';
 import 'package:crybse/features/search/presentation/provider/search_provider.dart';
 import 'package:crybse/gen/locale_keys.g.dart';
-import 'package:crybse/shared/constants/keys.dart';
+import 'package:crybse/shared/core/constants/keys.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

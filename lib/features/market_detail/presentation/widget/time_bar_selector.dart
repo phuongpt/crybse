@@ -1,4 +1,4 @@
-import 'package:crybse/shared/extensions/Iterable_extension.dart';
+import 'package:crybse/shared/core/extensions/Iterable_extension.dart';
 import 'package:crybse/shared/providers/time_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

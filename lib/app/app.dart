@@ -1,7 +1,7 @@
 import 'package:crybse/features/settings/presentation/provider/settings_provider.dart';
 import 'package:crybse/routers/app_route.dart';
-import 'package:crybse/shared/constants/app_theme.dart';
-import 'package:crybse/shared/constants/utils.dart' as utils;
+import 'package:crybse/shared/core/constants/app_theme.dart';
+import 'package:crybse/shared/core/constants/utils.dart' as utils;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
