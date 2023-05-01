@@ -11,6 +11,7 @@ The project also uses Very Good CLI
 ---
 ## Showcase
 
+https://user-images.githubusercontent.com/4443583/235393820-8991451c-7436-44a0-b2d7-1d8bf7facb83.mp4
    
 <div style="display: flex; flex-direction">
   <img style="width: 18%;" src="https://github.com/phuongpt/crybse/blob/develop/docs/images/screen1.png" alt="Image description">
