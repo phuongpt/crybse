@@ -6,7 +6,8 @@
 
 The project is a mobile application built with Flutter that serves as a platform to follow cryto market. It uses RiverPod as the state management and apply clean architecture. The project uses Supabase to communicate with the backend.
 
-The project also uses Very Good CLI
+And [Product Hunt](https://github.com/phuongpt/product_hunt) is another project which uses BloC and GraphQL
+
 
 ---
 ## Showcase

@@ -1,6 +1,6 @@
 import 'package:crybse/gen/locale_keys.g.dart';
+import 'package:crybse/shared/core/helpers/price_helper.dart';
 import 'package:crybse/shared/domain/models/pair/pair.dart';
-import 'package:crybse/shared/helper/price_helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crybse/features/market/presentation/provider/market_provider.dart';
+import 'package:crybse/shared/core/helpers/price_helper.dart';
 import 'package:crybse/shared/domain/models/model.dart';
-import 'package:crybse/shared/helper/price_helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
